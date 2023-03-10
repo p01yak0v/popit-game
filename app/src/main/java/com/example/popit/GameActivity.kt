@@ -32,10 +32,7 @@ class GameActivity : AppCompatActivity() {
 
         gameContainer = findViewById(R.id.gameContainer)
 
-        GameController.start {
-            showEndGameDialog()
-            stopGame()
-        }
+        // TODO : здесь нужно "начать" игру, доделаю сразу после катки в Доту
 
         gameContainer.post {
             runGameLoop()
@@ -53,8 +50,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun showEndGameDialog() {
+        // TODO : неоткуда взять количество очков, как-нибудь потом доделаю
         AlertDialog.Builder(this)
-            .setMessage("Игра окончена. Ваш результат: ${GameController.userScore()}")
+            .setMessage("Игра окончена. Ваш результат: ЕГО НЕТ!")
             .setPositiveButton("ШТОШ") { _, _ -> finish() }
             .create()
             .show()
@@ -81,7 +79,7 @@ class GameActivity : AppCompatActivity() {
         animator.start()
 
         bubbleView.setOnClickListener {
-            GameController.bubblePopped()
+            // TODO : обработать нажатие на шарик
             gameContainer.removeView(it)
             animator.cancel()
         }
@@ -146,7 +144,7 @@ class GameActivity : AppCompatActivity() {
                 onEnd = {
                     if (bubbleView.isShown) {
                         gameContainer.removeView(bubbleView)
-                        GameController.bubbleDestroyed()
+                        // TODO : обработать "самоуничтожение"
                     }
                 }
             )
